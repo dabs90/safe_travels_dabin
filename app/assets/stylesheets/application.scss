@@ -1,0 +1,52 @@
+// Graphical variables
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap";
+@import "font-awesome";
+@import "flatpickr";
+
+@import 'animate';
+
+
+// Your CSS partials
+@import "components/index";
+@import "pages/index";
+@import "components/card_carousel";
+@import "components/search_bar_home";
+@import "components/search_bar_index";
+@import "components/card_activity";
+@import "components/map";
+@import "components/itinerary_activity_card";
+@import "components/header";
+@import "pages/log_in";
+
+.body {
+  margin-bottom: 100px;
+}
+
+.homewrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #524FF7;
+  position: absolute;
+  z-index: 100000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  align-items: center;
+  overflow-x: hidden;
+
+  .logoholder{
+    background-image: url(st_logo.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 50%;
+    width: 50%;
+  }
+}

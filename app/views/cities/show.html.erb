@@ -1,0 +1,146 @@
+<div class="header d-flex justify-content-between p-3 mb-3" style="height:60px;">
+  <div class="search-index"><%= render "layouts/search_bar_home" %></div>
+</div>
+
+<div class="container itin-index" style="width:90%; margin-bottom:100px;">
+
+  <% if @city.safety_rating == 1 %>
+      <div class="card-trip" style="background-color:#B7D480;">
+    <% elsif @city.safety_rating == 2 %>
+      <div class="card-trip" style="background-color:#FDD984;">
+    <% elsif @city.safety_rating == 3 %>
+      <div class="card-trip" style="background-color:#FFA676;">
+    <% else %>
+      <div class="card-trip" style="background-color:#F7574F;">
+  <% end %>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="<%= @city.image_url_one %>" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="<%= @city.image_url_two %>" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="<%= @city.image_url_three %>" class="d-block w-100" alt="...">
+      </div>
+    </div>
+  </div>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @city.name %>, <%= @city.country %></h2>
+      <span>Safety Rating: <%= @city.safety_rating %></span>
+    </div>
+  </div>
+</div>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top:32px;">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" style="border-radius:6px;"><i class="fa-solid fa-binoculars"></i>      Discover</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="border-radius:6px;"><i class="fa-solid fa-shield-heart"></i>      Safety</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false" style="border-radius:6px;"><i class="fa-solid fa-quote-left"></i>      Review</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+    <%= render "layouts/card_activity" %>
+  </div>
+<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color:#524FF7; border-radius:10px;">
+          <i class="fa-solid fa-suitcase"></i>
+          <span style="margin-left:10px;">Solo Travelers</span>
+        </button>
+      </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+          <li>Don’t walk alone after dark.</li>
+          <li>Don’t take pictures without asking for permission – or expect to pay for the privilege if you do.</li>
+          <li>Carry a driving license and a little money in your pocket for the traffic police’s ‘lunch’.</li>
+          <li>Don’t pay for anything upfront without seeing the room/item/goods first.</li>
+          <li>Be vigilant when in public places.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background-color:#7774FF; border-radius:10px;">
+        <i class="fa-solid fa-map-pin"></i>
+        <span style="margin-left:10px;">Unknown Streets</span>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+          <li>Exploring unknown streets can be an exciting adventure, but it's important to prioritize your safety.</li>
+          <li>When navigating unfamiliar areas, consider the following safety precautions:
+          Stay alert and be aware of your surroundings at all times. Pay attention to the people around you and any potential risks or hazards.</li>
+          <li>Stay alert and be aware of your surroundings at all times. Pay attention to the people around you and any potential risks or hazards.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="background-color:#AAA8FF; border-radius:5px;">
+        <i class="fa-solid fa-house"></i>
+        <span style="margin-left:10px;">Where to Stay</span>
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <ul>
+        <li>When it comes to choosing accommodation, safety is paramount, especially for women travelers.</li>
+        <li>Prioritize well-established accommodations: Opt for reputable hotels, guesthouses, or hostels that have positive reviews and a track record of providing safe environments for their guests.</li>
+        <li>Research and choose accommodations that prioritize security measures and have a good reputation for hosting women travelers.</li>
+        <li>Location matters: Select accommodations in safe and well-populated areas, preferably near main streets or public transportation.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="background-color:#D2D1FF; border-radius:5px;">
+        <i class="fa-solid fa-venus"></i>
+        <span style="margin-left:10px;">Women in the World</span>
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+          <li>Women traveling alone or in groups can have incredible and enriching experiences.</li>
+          <li>To ensure a safe journey, it's important to prioritize personal safety.</li>
+          <li>Some key tips include: Research your destination: Familiarize yourself with the local culture, customs, and laws.</li>
+          <li>Learn about any potential safety concerns or specific precautions to take for women travelers.</li>
+          <li>Plan and share your itinerary: Create a detailed itinerary and share it with a trusted friend or family member.</li>
+          <li>Keep them updated on your whereabouts and check in regularly.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+  <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
+    <div class="d-flex align-items-start flex-wrap">
+      <% @city.itineraries.each do |itinerary| %>
+        <% if itinerary.review.present? %>
+          <div class="col-12 p-4 mb-2 mt-2 border" style="border-radius:5px;  box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+            <h4 style="color: #524FF7;;"><%= itinerary.user.first_name %> <%= itinerary.user.last_name %></h4>
+            <%= itinerary.review %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>
+</div>
+</div>

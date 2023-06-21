@@ -1,0 +1,38 @@
+<% cities.each do |city| %>
+  <div class="card-trip">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+      <a href="<%= city_path(city.id) %>">
+        <img src="<%= city.image_url_one %>" class="d-block w-100" alt="...">
+        </a>
+      </div>
+      <div class="carousel-item">
+      <a href="<%= city_path(city.id) %>">
+        <img src="<%= city.image_url_two %>" class="d-block w-100" alt="...">
+      </a>
+      </div>
+      <div class="carousel-item">
+      <a href="<%= city_path(city.id) %>">
+        <img src="<%= city.image_url_three %>" class="d-block w-100" alt="...">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= city.name %></h2>
+      <h4><%= city.country %></h4>
+        <% if city.safety_rating == 1 %>
+          <div class="safety-rating" style="background-color:#B7D480;">Safety Rating: <%= city.safety_rating %></div>
+        <% elsif city.safety_rating == 2 %>
+          <div class="safety-rating" style="background-color:#FDD984;">Safety Rating: <%= city.safety_rating %></div>
+        <% elsif city.safety_rating == 3 %>
+          <div class="safety-rating" style="background-color:#FFA676;">Safety Rating: <%= city.safety_rating %></div>
+        <% else%>
+          <div class="safety-rating" style="background-color:#F7574F;">Safety Rating: <%= city.safety_rating %></div>
+        <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

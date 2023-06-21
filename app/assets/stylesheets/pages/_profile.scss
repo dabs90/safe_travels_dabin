@@ -1,0 +1,105 @@
+.profile-card {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin: 0 auto;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card-content img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+}
+
+.edit-profile-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.user-name {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.bio-user{
+  margin-top: 30px;
+}
+
+.profile-icon {
+  justify-text: center;
+  align-items: center;
+  margin-top: 10px;
+  background-color: rgb(98, 70, 211);
+  margin: 0 auto;
+}
+.header a {
+  color:white;
+  text-decoration: none;
+}
+
+.fas fa-edit{
+  align-items: center;
+  background-color: rgb(98, 70, 211);
+  margin: auto;
+}
+
+
+//  #chatroom index code
+.profile-picture {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  float: left;
+}
+
+.chatroom-link {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.log-out{
+  margin-top: 20px;
+  margin: 0;
+  text-align: center;
+  width:100%;
+  padding: 5px;
+  text-align: center;
+  background-color: #F6C522;
+  line-height: 40px;
+  border-radius: 100px
+}
+
+.user-name h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  }
+
+.user-container {
+  margin: 0px auto;
+  padding: 0 20px;
+}
+
+.user-top-container {
+  margin: 0 auto 120px auto;
+  width: 90%;
+}

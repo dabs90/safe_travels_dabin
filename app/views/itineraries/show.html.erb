@@ -1,0 +1,128 @@
+<div class="header col-12 d-flex justify-content-between p-3" style="height:60px;">
+  <%= link_to itineraries_path, class: 'add-button' do %>
+    <h4><i class="fa-solid fa-chevron-left" style="color:white;"></i></h4>
+  <% end %>
+
+  <h5>
+  <% if !@itinerary.end_date.past? %>
+      <%= @city.name %>
+      <%= link_to icon('fa-regular', 'edit icon-hover-edit'), edit_itinerary_path(@itinerary) %>
+    <% else %>
+      <%= @city.name %>
+    <% end %>
+  </h5>
+
+  <div>
+    <h4><%= link_to city_path(@itinerary.city) do %><i class="fas fa-search"></i><% end %></h4>
+  </div>
+
+</div>
+
+<div class="container itin-index" style="width:90%; margin-bottom:100px;">
+
+<div style="text-align:center; margin-top:20px; margin-bottom:20px;">
+  <h4>
+    <%= @itinerary.title %>
+    <% if !@itinerary.end_date.past? %>
+    <span data-controller="email" data-email-id-value="<%= @itinerary.id%>" style="font-size:20px;">
+      <a href="#"data-action="click->email#show"><i class="fa fa-paper-plane" style="color:#524FF7;"></i></a>
+    </span>
+    <% end %>
+  </h4>
+  <p><%= @itinerary.start_date.strftime('%B %d ') %> - <%= @itinerary.end_date.strftime('%B %d ') %> </p>
+</div>
+
+<%= render "layouts/map" %>
+
+
+<div style="margin-top:20px; margin-bottom:20px;"><h6><% if !@itinerary.end_date.past? %><%= link_to new_city_activity_path(@itinerary.city_id, itinerary_id: @itinerary.id, custom: true ), style:"text-decoration:none;" do %> <span style="color:black;">Add an Activity</span>     <i class="fas fa-plus-circle" style="color:#524FF7;"></i><% end %><% end %></h6></div>
+
+
+<% sorted_it_activities = @itinerary.it_activities.includes(:activity).order(:date).group_by(&:date) %>
+<% sorted_it_activities.keys.each do |date| %>
+  <% if date.present? %>
+    <p><%= date.strftime('%A, %B %d') %></p>
+  <% else %>
+    <p></p>
+  <% end %>
+  <% sorted_it_activities[date].each do |it_activity| %>
+    <div class="card-product">
+      <% activity = it_activity.activity %>
+      <% if activity.image_url.present? %>
+        <img src="<%= activity.image_url %>" alt="">
+      <% else %>
+        <img src="https://a.storyblok.com/f/112937/568x464/884e373bca/travel_pic_unsplash1-568x464.jpg/m/620x0/filters:quality(70)/" alt="">
+      <% end %>
+      <div class="card-product-infos" data-controller="toggler">
+        <h2 data-action="click->toggler#toggle"><%= activity.title %></h2>
+          <% if activity.custom? %>
+              <div data-toggler-target="togglableElement" class="d-none">
+                <%= form_with(model: activity, url: activity_path(activity), class: 'hidden-form', local: true) do |form| %>
+                  <%= form.text_field :title, value: activity.title %>
+                  <%= form.text_field :address, value: activity.address %>
+                  <%= form.submit 'Update', class: 'update-button' %>
+                <% end %>
+              </div>
+          <% end %>
+        <h2 class="d-flex" style="color:#524FF7;">
+          <div data-controller="calendar">
+              <div class="delete">
+                  <%= link_to icon('fa-regular', 'circle-xmark'), itinerary_it_activity_path(@itinerary, it_activity), data: { turbo_method: :delete } %>
+              </div>
+              <div data-calendar-target="togglableElement" class="d-none">
+                <%= form_with(model: it_activity, url: itinerary_it_activity_path(@itinerary, it_activity), class: 'hidden-form', local: true) do |form| %>
+                  <%= form.date_field :date %>
+                  <%= form.submit 'Update', class: 'update-button' %>
+                <% end %>
+              </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% if !@itinerary.end_date.past? %>
+  <strong>Our Suggestions</strong>
+<div class="scroll-container">
+  <% @activities.each do |activity| %>
+    <div class="activity-image-container" data-controller="toggler">
+              <% unless activity.custom || @itinerary.it_activities.exists?(activity_id: activity.id) %>
+                  <% if activity.image_url.present? %>
+                    <img src="<%= activity.image_url %>" alt="" data-action="click->toggler#toggle">
+                  <% end %>
+                  <div data-toggler-target="togglableElement" class="d-none">
+                    <div class="blue d-flex flex-column shadow-lg p-3 mb-1 bg-white">
+                      <img src="<%= activity.image_url %>" style="width: 100%;height: 200px; object-fit: cover;border-radius:5px;">
+
+                        <div>
+                          <h2><% if activity.title.length > 20 %>
+                            <%= "#{activity.title.slice(0,20)}..." %>
+                            <% else %>
+                            <%= activity.title %><% end %></h2>
+                          <p>Pick a day:</p>
+                          <%= simple_form_for([@itinerary, ItActivity.new]) do |f| %>
+                            <%= f.hidden_field :activity_id, value: activity.id %>
+                            <%= f.hidden_field :itinerary_id, value: @itinerary.id %>
+                          <div class="d-flex justify-content-center">
+                            <%= f.date_field :date, class:"form-actions", style: "border: 0;width: 12%;" %>
+                            <%= f.button :submit, "+", class:"form-actions", style: "width: 12%;", disabled: @itinerary.it_activities.exists?(activity_id: activity.id) %>
+                            <%= link_to 'x', itinerary_path(@itinerary), class:"form-actions", style: "width: 12%; text-decoration:none; color: black" %>
+                          </div>
+                          <% end %>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          <% end %>
+      </div>
+    <% else %>
+      <% if @itinerary.review.present? %>
+        <h5>Review</h5>
+        <%= @itinerary.review %>
+      <% end %>
+    <% end %>
+</div>
+
+</div>

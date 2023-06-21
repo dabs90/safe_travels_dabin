@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'apple-icon-57x57.png' %>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%= image_path 'apple-icon-60x60.png' %>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'apple-icon-72x72.png' %>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%= image_path 'apple-icon-76x76.png' %>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'apple-icon-114x114.png' %>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%= image_path 'apple-icon-120x120.png' %>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%= image_path 'apple-icon-144x144.png' %>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%= image_path 'apple-icon-152x152.png' %>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path 'apple-icon-180x180.png' %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= image_path 'favicon-32x32.png' %>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= image_path 'favicon-96x96.png' %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= image_path 'favicon-16x16.png' %>">
+
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title>SafeTravels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+<% if params[:controller] == 'pages' &&  params[:action] == 'home' %>
+
+
+    <body data-controller="home" data-home-target="body" style="margin-bottom:130px;">
+    <%= render "layouts/header" %>
+
+<% end %>
+
+<% if @show_loading_page %>
+    <body data-controller="home" data-home-target="body">
+
+      <div data-home-target="logo" class="homewrapper">
+        <div class="logoholder"></div>
+      </div>
+      <script>
+        setTimeout(function() {
+          window.location.href = '<%= yield :redirect_path %>';
+        }, 3000); // Delay in milliseconds (e.g., 3000 for 3 seconds)
+      </script>
+      <%= yield %>
+      <%= render "layouts/navbar" %>
+    </body>
+  <% else %>
+    <body>
+      <%= yield %>
+      <%= render "layouts/navbar" %>
+    </body>
+  <% end %>
+</html>

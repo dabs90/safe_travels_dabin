@@ -1,0 +1,10 @@
+.mapboxgl-popup {
+  max-width: 200px;
+  border-radius: 10px;
+  z-index:-1;
+}
+
+
+.mapboxgl-ctrl-geocoder {
+  display: none;
+}

@@ -1,0 +1,45 @@
+.home {
+  background-image: url("https://res.cloudinary.com/doxaalafc/image/upload/v1686643047/SafeTravels%20app/Images/Banner%20images/Banner_image_edit_final_sbhhx9.png");
+  height: 30vh;
+  background-size: cover;
+  // background-size: contain;
+}
+.centered{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 18px;
+  color: white;
+  position: absolute;
+  top: 13%;
+  left: 7%;
+}
+.secondary{
+  color: white;
+  position: absolute;
+  top: 17%;
+  left: 7%;
+}
+.one{
+  border-radius: 5px;
+  background-color:#B7D480;
+}
+.two{
+  border-radius: 5px;
+  background-color:#FDD984;
+}
+.three{
+  border-radius: 5px;
+  background-color:#FFA676;
+}
+.four{
+  border-radius: 5px;
+  background-color:#F7574F;
+}
+
+#search-card {
+    margin-left:10% !important;
+}
+
+.test-container {
+  padding: 20px 20px;
+}

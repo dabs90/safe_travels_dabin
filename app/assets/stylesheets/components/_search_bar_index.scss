@@ -1,0 +1,18 @@
+.search-index{
+  position:absolute;
+  top: 12px;
+  left: 9%;
+  right: 9%;
+  text-align: right;
+  margin: auto;
+  display: table;
+  display:block;
+
+  i {
+  color: black;
+  position:absolute;
+  right: 5%;
+  top: 12px;
+  display:table-cell;
+  }
+}

@@ -1,0 +1,40 @@
+div.scroll-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  position: relative;
+}
+
+div.scroll-container .activity-image-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+div.scroll-container .activity-image-container img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.scroll-container{
+  .fa-heart{
+    color: white;
+    position: absolute;
+    top: 12%;
+    left: 38%;
+  }
+  .fa-star{
+    border: 1px solid white;
+    background-color: white;
+    position: absolute;
+    top: 73%;
+    left: 8%;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 10px;
+  }
+}
+.category {
+  margin-top: 20px;
+}
